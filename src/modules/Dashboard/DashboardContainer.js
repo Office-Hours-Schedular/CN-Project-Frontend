@@ -2,7 +2,7 @@ import React from "react";
 import DashboardView from "./DashboardView";
 
 const DashboardContainer = () => {
-  return <DashboardView />;
+  return <DashboardView userType="student" />;
 };
 
 export default DashboardContainer;
