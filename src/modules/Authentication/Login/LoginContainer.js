@@ -1,9 +1,28 @@
 import React from "react";
 import LoginView from './LoginView'
+import { useForm } from "react-hook-form";
 
 const LoginContainer = () => {
-    //write all api calling and logic functions here. send only necessary view data in view file.
-  return <LoginView />
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+
+  const handleLoginSubmit = (formdata) => {
+    console.log(formdata)
+    //api call
+  };
+  return (
+    <LoginView
+      onLoginSubmit={handleSubmit(handleLoginSubmit)}
+      errors={errors}
+      control={control}
+    />
+  );
 };
 
 export default LoginContainer;

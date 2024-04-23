@@ -1,9 +1,26 @@
 import React from "react";
 import SignupView from './SignupView'
+import { useForm } from "react-hook-form";
 
 const SignupContainer = () => {
-    //write all api calling and logic functions here. send only necessary view data in view file.
-  return <SignupView />
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const handleSignupSubmit = (formdata) => {
+    console.log(formdata);
+    //api call
+  };
+  return (
+    <SignupView
+      onSignupSubmit={handleSubmit(handleSignupSubmit)}
+      control={control}
+      errors={errors}
+    />
+  );
 };
 
 export default SignupContainer;
