@@ -1,3 +1,5 @@
+/*jslint es6 */
+
 import React from "react";
 import DashboardView from "./DashboardView";
 

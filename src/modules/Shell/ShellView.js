@@ -5,7 +5,7 @@ import DashboardContainer from "../Dashboard";
 import {Login, Signup} from '../Authentication'
 import { StyledShellWrapper } from "./Shell.styled";
 
-const ShellView = () => {
+const ShellView = ({props}) => {
 // this is view of web. we will directing to all the pages (components) from here.
   return (
     <StyledShellWrapper>
@@ -16,9 +16,9 @@ const ShellView = () => {
           return <Redirect to="/dashboard" />;
         }}
       />
-      <Route path="/dashboard" render={() => <DashboardContainer />} />
-      <Route path="/signup" render={()=><Signup/>}/>
-      <Route path="/login" render={()=><Login/>}/>
+      <Route path="/dashboard" render={() => <DashboardContainer {...props} />} />
+      <Route path="/signup" render={() => <Signup />} />
+      <Route path="/login" render={() => <Login />} />
     </StyledShellWrapper>
   );
 };

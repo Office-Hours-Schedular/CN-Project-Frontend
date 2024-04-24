@@ -1,9 +1,9 @@
 import React from "react";
-import { StyledFieldError } from "./Form.styled";
+import { StyledFieldError, StyledDiv } from "./Form.styled";
 
 const FormFieldError = ({ error }) => {
   if (!error) {
-    return null;
+    return <StyledDiv></StyledDiv>;
   }
 
   return <StyledFieldError>{error}</StyledFieldError>;
