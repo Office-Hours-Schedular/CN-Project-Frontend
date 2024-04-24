@@ -5,8 +5,6 @@ import Footer from "../../../components/Footer";
 
 import {
   validateRequiredField,
-  isMobileNumber,
-  isOnlyNumbers,
 } from "../../../utils/formValidations";
 
 import {

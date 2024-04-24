@@ -7,7 +7,6 @@ const SignupContainer = () => {
     handleSubmit,
     control,
     formState: { errors },
-    reset,
   } = useForm();
 
   const handleSignupSubmit = (formdata) => {

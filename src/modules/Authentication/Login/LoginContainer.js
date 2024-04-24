@@ -8,7 +8,6 @@ const LoginContainer = () => {
     handleSubmit,
     control,
     formState: { errors },
-    reset,
   } = useForm();
 
 
