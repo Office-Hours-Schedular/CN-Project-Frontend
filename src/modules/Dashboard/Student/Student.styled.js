@@ -30,19 +30,6 @@ export const SelectStyle = styled.div`
   }
 `;
 
-export const TimeSlotContainer = styled.div`
-  margin-top: 30px;
-  width: 80%;
-  display: grid;
-  grid-template-columns: repeat(4, 0.5fr);
-  gap: 20px;
-
-  p {
-    font-size: 16px;
-    font-weight: bold;
-  }
-`;
-
 export const TimeSlot = styled.div`
   background-color: #f2f2f2;
   padding: 5px;
@@ -73,5 +60,39 @@ export const SubmitWrapper = styled.div`
     &:hover {
       background-color: #000000;
     }
+  }
+`;
+
+export const TimeSlotContainer = styled.div`
+  margin-top: 20px;
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  .time-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  label {
+    display: block;
+    width: 100px;
+    height: 80px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 80px;
+    cursor: pointer;
+  }
+
+  input[type="radio"]:checked + label {
+    background-color: #a6192e;
+    color: #fff;
   }
 `;

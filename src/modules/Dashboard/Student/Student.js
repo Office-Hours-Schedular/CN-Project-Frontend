@@ -3,7 +3,6 @@ import {
   SelectStyle,
   StudentContent,
   TimeSlotContainer,
-  TimeSlot,
   SubmitWrapper,
 } from "./Student.styled";
 
@@ -33,17 +32,32 @@ const Student = () => {
       />
 
       <TimeSlotContainer>
-        <p>Please select your preferred slot</p>
+        <p>Select your preferred time slot</p>
+        <div class="time-slots">
+          <input type="radio" id="slot_1" name="time-slot" value="9:00" />
+          <label for="slot_1">9:00 AM</label>
 
-        <TimeSlot>9:00 AM</TimeSlot>
-        <TimeSlot>9:30 AM</TimeSlot>
-        <TimeSlot>10:00 AM</TimeSlot>
-        <TimeSlot>10:30 AM</TimeSlot>
-        <TimeSlot>11:00 AM</TimeSlot>
-        <TimeSlot>11:30 AM</TimeSlot>
-        <TimeSlot>12:00 PM</TimeSlot>
-        <TimeSlot>12:30 PM</TimeSlot>
-        <TimeSlot>1:00 PM</TimeSlot>
+          <input type="radio" id="slot_2" name="time-slot" value="9:30" />
+          <label for="slot_2">9:30 AM</label>
+
+          <input type="radio" id="slot_3" name="time-slot" value="10" />
+          <label for="slot_3">10:00 AM</label>
+
+          <input type="radio" id="slot_4" name="time-slot" value="10:30" />
+          <label for="slot_4">10:30 AM</label>
+
+          <input type="radio" id="slot_5" name="time-slot" value="11:00" />
+          <label for="slot_5">11:00 AM</label>
+
+          <input type="radio" id="slot_6" name="time-slot" value="11:30" />
+          <label for="slot_6">11:30 AM</label>
+
+          <input type="radio" id="slot_7" name="time-slot" value="12:00" />
+          <label for="slot_7">12:00 PM</label>
+
+          <input type="radio" id="slot_8" name="time-slot" value="11:00" />
+          <label for="slot_8">12:30 PM</label>
+        </div>
       </TimeSlotContainer>
 
       <SubmitWrapper>
