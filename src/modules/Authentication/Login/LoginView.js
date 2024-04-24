@@ -9,39 +9,74 @@ import {
   isOnlyNumbers,
 } from "../../../utils/formValidations";
 
-import { CardTitle, ContainerFluid } from "../Authentication.styled";
+import {
+  ContainerFluid,
+  StyledAddUserSectionContainer,
+  StyledButton,
+  StyledInputWrapper,
+  StyledTitle,
+  StyledWrapper,
+  StyledFormContainer,
+} from "../Authentication.styled";
 
-const LoginView = () => {
+const LoginView = ({ onLoginSubmit, control, errors }) => {
+
   return (
     <div>
       <Header />
       <ContainerFluid>
-        {/* <div class="login-container">
-          <div class="card">
-            <div class="card-body">
-              <Form>
-                <CardTitle>
-                  <p>Office Hours Scheduler Login</p>
-                </CardTitle>
-                <div class="form-group">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" />
-                </div>
-                <div class="form-group">
-                  <label for="passwordField">Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="passwordField"
+        <StyledFormContainer>
+          <Form onSubmit={onLoginSubmit}>
+            <StyledAddUserSectionContainer>
+              <StyledTitle>Login</StyledTitle>
+              <StyledWrapper>
+                <StyledInputWrapper>
+                  <Form.Label
+                    label="User Name"
+                    margin="0 0 10px 0"
+                    fill="#828282"
                   />
-                </div>
-                <button type="submit" class="btn btn-primary">
-                  Submit
-                </button>
-              </Form>
-            </div>
-          </div>
-        </div> */}
+                  <Form.Input
+                    control={control}
+                    errors={errors}
+                    name="userName"
+                    type="Input"
+                    placeholder="Enter User Name"
+                    size="medium"
+                    rules={{
+                      validate: {
+                        required: validateRequiredField("User Name"),
+                      },
+                    }}
+                  />
+                </StyledInputWrapper>
+                <StyledInputWrapper>
+                  <Form.Label
+                    label="Password"
+                    margin="0 0 10px 0"
+                    fill="#828282"
+                  />
+                  <Form.Input
+                    control={control}
+                    errors={errors}
+                    name="password"
+                    type="password"
+                    placeholder="Enter Password"
+                    size="medium"
+                    rules={{
+                      validate: {
+                        required: validateRequiredField("Password"),
+                      },
+                    }}
+                  />
+                </StyledInputWrapper>
+              </StyledWrapper>
+              <StyledButton type="primary" htmlType="submit">
+                Submit
+              </StyledButton>
+            </StyledAddUserSectionContainer>
+          </Form>
+        </StyledFormContainer>
       </ContainerFluid>
       <Footer />
     </div>

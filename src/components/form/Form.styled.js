@@ -5,6 +5,7 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledFieldError = styled.p`
+  font-size: small;
   padding: 3px 0;
   color: #f8151d;
 `;
@@ -17,3 +18,8 @@ export const StyledFormLabel = styled.label`
   ${({ margin }) => margin && `margin: ${margin};`};
   line-height: 1.45em;
 `;
+
+export const StyledDiv = styled.div`
+ padding-top: 19px;
+`;
+
