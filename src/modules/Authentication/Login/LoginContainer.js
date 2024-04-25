@@ -12,7 +12,7 @@ const LoginContainer = () => {
 
 
   const handleLoginSubmit = (formdata) => {
-    console.log(formdata)
+     console.log(formdata);
     //api call
   };
   return (

@@ -1,14 +1,28 @@
+import {
+  OFFICE_HOURS_MANAGER_API_URL,
+} from "../utils/config.js";
+
 export const schema = {
-  FETCH_HOME_DATA: ({ isSuccess }) => {
-    let url = isSuccess
-      ? `${window.location.origin}/stubs/homeAPI.json`
-      : `${window.location.origin}/stubs/homeAPIs.json`;
+  // FETCH_HOME_DATA: ({ isSuccess }) => {
+  //   let url = isSuccess
+  //     ? `${window.location.origin}/stubs/homeAPI.json`
+  //     : `${window.location.origin}/stubs/homeAPIs.json`;
+  //   return {
+  //     props: "home",
+  //     url,
+  //     method: "GET",
+  //   };
+  // },
+
+  POST_STUDENT_SCHEDULE_ITEM: (payload) => {
+    const url = `${OFFICE_HOURS_MANAGER_API_URL}/api/student/schedule/${payload.id}`;
     return {
-      props: "home",
+      props: "addStudentScheduleItem",
       url,
-      method: "GET",
+      method: "POST",
     };
   },
+
   GET_USERS_LIST: () => {
     const url = `https://blue-journalist-bbrpv.ineuron.app:4000/users`;
 

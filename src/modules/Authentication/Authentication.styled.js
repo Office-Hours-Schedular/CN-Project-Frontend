@@ -35,15 +35,6 @@ export const StyledWrapper = styled.div`
   gap: 10px;
 `;
 
-export const StyledButton = styled(Button)`
-  background-color: #ac1330;
-  &:hover {
-    background-color: white !important;
-    border-color: #ac1330 !important;
-    color: #ac1330 !important;
-  }
-`;
-
 export const StyledFormContainer = styled.div`
   gap: 40px;
   background-color: white;

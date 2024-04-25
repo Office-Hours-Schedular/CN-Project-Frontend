@@ -10,7 +10,7 @@ const SignupContainer = () => {
   } = useForm();
 
   const handleSignupSubmit = (formdata) => {
-    console.log(formdata);
+     console.log(formdata);
     //api call
   };
   return (

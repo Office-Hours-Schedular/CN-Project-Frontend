@@ -12,7 +12,7 @@ export const StyledFieldError = styled.p`
 
 export const StyledFormLabel = styled.label`
   display: inline-block;
-  font-weight: normal;
+  font-weight: ${({ bold }) => bold && "bold"};
   font-size: 14px;
   color: ${({ fill }) => fill && fill};
   ${({ margin }) => margin && `margin: ${margin};`};

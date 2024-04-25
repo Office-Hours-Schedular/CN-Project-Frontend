@@ -1,32 +1,9 @@
 import styled from "styled-components";
 
-export const StudentContent = styled.div`
-  input[type="text"] {
-    height: 30px;
-    min-width: 100%;
-    background-color: #f2f2f2;
-    border: none;
-    margin-top: 5px;
-  }
+export const StyledInputWrapper = styled.div`
+width:70%;
+`
 
-  p {
-    font-weight: bold;
-  }
-
-  button {
-    background-color: #a6192e;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-
-    &:hover {
-      background-color: #000000;
-    }
-  }
-`;
 
 export const SelectStyle = styled.div`
   margin-bottom: 20px;
@@ -97,6 +74,55 @@ export const TimeSlotContainer = styled.div`
   }
 `;
 
+
+export const TimeSlotSelectorHeader = styled.h2`
+  margin-bottom: 10px;
+`;
+
+export const ErrorMessage = styled.div`
+  color: red;
+`;
+
+export const DatePickerContainer = styled.div`
+  flex: 1;
+  margin-right: 20px;
+`;
+export const TimeSlotButton = styled.button`
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: ${({ selected }) => (selected ? "#ac1330" : "#fff")};
+  color: ${({ selected }) => (selected ? "#fff" : "inherit")};
+  border: 1px solid #ac1330;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ selected }) => (selected ? "#ac1330" : "#fff")};
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #f0f0f0; // Optional: dull the color to indicate it's disabled
+    color: #666; // Optional: dull the text color too
+  }
+`;
+
+export const StyledDate = styled.div`
+  margin-bottom:19px;
+`;
+
+export const SelectView = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const StudentDashboardWrapper = styled.div`
+width:100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const AppointmentContent = styled.div`
   display: flex;
   flex-direction: row;
@@ -107,3 +133,5 @@ export const AppointmentContent = styled.div`
   padding: 20px 30px;
   border-bottom: solid 0.7px;
 `;
+
+
