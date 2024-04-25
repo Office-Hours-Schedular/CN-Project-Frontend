@@ -12,6 +12,20 @@ export const StudentContent = styled.div`
   p {
     font-weight: bold;
   }
+
+  button {
+    background-color: #a6192e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: #000000;
+    }
+  }
 `;
 
 export const SelectStyle = styled.div`
@@ -47,20 +61,6 @@ export const TimeSlot = styled.div`
 export const SubmitWrapper = styled.div`
   display: flex;
   justify-content: left;
-  margin-top: 20px;
-
-  button {
-    background-color: #a6192e;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #000000;
-    }
-  }
 `;
 
 export const TimeSlotContainer = styled.div`
@@ -95,4 +95,15 @@ export const TimeSlotContainer = styled.div`
     background-color: #a6192e;
     color: #fff;
   }
+`;
+
+export const AppointmentContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 50px;
+  background-color: #f2f2f2;
+  padding: 20px 30px;
+  border-bottom: solid 0.7px;
 `;

@@ -9,10 +9,10 @@ import CalendarSelector from "../../components/CalendarSelector/CalendarSelector
 import Student from "./Student/Student";
 import Professor from "./Professor/Professor";
 
-const DashboardView = ({ userType }) => {
+const DashboardView = ({ data }) => {
   //add more components, by creating it outside.
 
-  if (userType === "student") {
+  if (data.userType === "student") {
     return (
       <div>
         <Header />
@@ -20,7 +20,7 @@ const DashboardView = ({ userType }) => {
           <StyleHeading>Welcome to Student Dashboard</StyleHeading>
           <DashboardContent>
             <CalendarSelector />
-            <Student />
+            <Student data={data} />
           </DashboardContent>
         </StyledDashboardContainer>
         <Footer />
@@ -34,7 +34,7 @@ const DashboardView = ({ userType }) => {
           <StyleHeading>Welcome to Professor Dashboard</StyleHeading>
           <DashboardContent>
             <CalendarSelector />
-            <Professor />
+            <Professor data={data} />
           </DashboardContent>
         </StyledDashboardContainer>
 

@@ -4,9 +4,12 @@ import {
   StudentContent,
   TimeSlotContainer,
   SubmitWrapper,
+  AppointmentContent,
 } from "./Student.styled";
 
-const Student = () => {
+const Student = ({ data }) => {
+  const appointmentData = data.appointmentData;
+
   return (
     <StudentContent>
       <SelectStyle>
@@ -63,6 +66,15 @@ const Student = () => {
       <SubmitWrapper>
         <button type="submit">Schedule Appointment</button>
       </SubmitWrapper>
+      <h2> All Upcoming Appointments</h2>
+      {appointmentData.map((appointment) => {
+        return (
+          <AppointmentContent key={appointment.id}>
+            <p>{appointment.reason}</p>
+            <p>{appointment.time}</p>
+          </AppointmentContent>
+        );
+      })}
     </StudentContent>
   );
 };
