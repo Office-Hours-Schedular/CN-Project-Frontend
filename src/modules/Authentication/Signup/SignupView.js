@@ -25,24 +25,65 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
               <StyledWrapper>
                 <StyledInputWrapper>
                   <Form.Label
-                    label="User Name"
+                    label="First Name"
                     margin="0 0 10px 0"
                     fill="#828282"
                   />
                   <Form.Input
                     control={control}
                     errors={errors}
-                    name="userName"
+                    name="firstName"
                     type="Input"
-                    placeholder="Enter User Name"
+                    placeholder="Enter First Name"
                     size="medium"
                     rules={{
                       validate: {
-                        required: validateRequiredField("User Name"),
+                        required: validateRequiredField("First Name"),
                       },
                     }}
                   />
                 </StyledInputWrapper>
+                <StyledInputWrapper>
+                  <Form.Label
+                    label="Last Name"
+                    margin="0 0 10px 0"
+                    fill="#828282"
+                  />
+                  <Form.Input
+                    control={control}
+                    errors={errors}
+                    name="lastName"
+                    type="Input"
+                    placeholder="Enter Last Name"
+                    size="medium"
+                    rules={{
+                      validate: {
+                        required: validateRequiredField("Last Name"),
+                      },
+                    }}
+                  />
+                </StyledInputWrapper>
+                <StyledInputWrapper>
+                  <Form.Label
+                    label="Email"
+                    margin="0 0 10px 0"
+                    fill="#828282"
+                  />
+                  <Form.Input
+                    control={control}
+                    errors={errors}
+                    name="email"
+                    type="Input"
+                    placeholder="Enter Email"
+                    size="medium"
+                    rules={{
+                      validate: {
+                        required: validateRequiredField("Email"),
+                      },
+                    }}
+                  />
+                </StyledInputWrapper>
+                
                 <StyledInputWrapper>
                   <Form.Label
                     label="Password"
