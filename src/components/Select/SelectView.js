@@ -14,7 +14,6 @@ const filterOption = (input, option) =>
    option.children.toLowerCase().includes(input.toLowerCase());
   
 const Select = ({ options, color, ...rest }) => {
-console.log({...rest},"hii")
   return (
     <StyledSelect color={color} {...rest} filterOption={filterOption}>
       {optionList(options)}

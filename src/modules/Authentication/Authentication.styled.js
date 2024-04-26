@@ -48,3 +48,9 @@ export const StyledFormContainer = styled.div`
   transform: translate(-50%, -50%);
   z-index: 9;
 `;
+
+export const StyledItemWrapper = styled.div`
+  display:flex;
+  gap: 40px;
+`
+  

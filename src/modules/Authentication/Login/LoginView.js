@@ -29,20 +29,20 @@ const LoginView = ({ onLoginSubmit, control, errors }) => {
               <StyledWrapper>
                 <StyledInputWrapper>
                   <Form.Label
-                    label="User Name"
+                    label="Email Address"
                     margin="0 0 10px 0"
                     fill="#828282"
                   />
                   <Form.Input
                     control={control}
                     errors={errors}
-                    name="userName"
+                    name="email"
                     type="Input"
-                    placeholder="Enter User Name"
+                    placeholder="Enter Email Address"
                     size="medium"
                     rules={{
                       validate: {
-                        required: validateRequiredField("User Name"),
+                        required: validateRequiredField("Email Address"),
                       },
                     }}
                   />

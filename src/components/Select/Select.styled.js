@@ -7,13 +7,13 @@ export const StyledSelect = styled(Select)`
 
     > div {
       border-color: ${({ color }) =>
-        color === "success" || color === "error" ? "#ac1330" : "#f6f7f8"};
+        color === "success" || color === "error" ? "#ac1330" : "#e0e0e0"};
 
       &:active,
       &:active:hover,
       &:focus,
       &:focus:hover {
-        border-color:#ac1330;
+        border-color: #ac1330;
       }
 
       &:hover {

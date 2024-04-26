@@ -9,8 +9,20 @@ import {
   StyledTitle,
   StyledWrapper,
   StyledFormContainer,
+  StyledItemWrapper,
 } from "../Authentication.styled";
 import { validateRequiredField } from "../../../utils/formValidations";
+
+const OCCUPATION_STUB = [
+  {
+    value: "student",
+    label: "Student",
+  },
+  {
+    value: "professor",
+    label: "Professor",
+  },
+];
 
 const SignupView = ({ onSignupSubmit, control, errors }) => {
   return (
@@ -22,109 +34,138 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
             <StyledAddUserSectionContainer>
               <StyledTitle>Signup</StyledTitle>
               <StyledWrapper>
-                <StyledInputWrapper>
-                  <Form.Label
-                    label="First Name"
-                    margin="0 0 10px 0"
-                    fill="#828282"
-                  />
-                  <Form.Input
-                    control={control}
-                    errors={errors}
-                    name="firstName"
-                    type="Input"
-                    placeholder="Enter First Name"
-                    size="medium"
-                    rules={{
-                      validate: {
-                        required: validateRequiredField("First Name"),
-                      },
-                    }}
-                  />
-                </StyledInputWrapper>
-                <StyledInputWrapper>
-                  <Form.Label
-                    label="Last Name"
-                    margin="0 0 10px 0"
-                    fill="#828282"
-                  />
-                  <Form.Input
-                    control={control}
-                    errors={errors}
-                    name="lastName"
-                    type="Input"
-                    placeholder="Enter Last Name"
-                    size="medium"
-                    rules={{
-                      validate: {
-                        required: validateRequiredField("Last Name"),
-                      },
-                    }}
-                  />
-                </StyledInputWrapper>
-                <StyledInputWrapper>
-                  <Form.Label
-                    label="Email"
-                    margin="0 0 10px 0"
-                    fill="#828282"
-                  />
-                  <Form.Input
-                    control={control}
-                    errors={errors}
-                    name="email"
-                    type="Input"
-                    placeholder="Enter Email"
-                    size="medium"
-                    rules={{
-                      validate: {
-                        required: validateRequiredField("Email"),
-                      },
-                    }}
-                  />
-                </StyledInputWrapper>
-                
-                <StyledInputWrapper>
-                  <Form.Label
-                    label="Password"
-                    margin="0 0 10px 0"
-                    fill="#828282"
-                  />
-                  <Form.Input
-                    control={control}
-                    errors={errors}
-                    name="password"
-                    type="password"
-                    placeholder="Enter Password"
-                    size="medium"
-                    rules={{
-                      validate: {
-                        required: validateRequiredField("Password"),
-                      },
-                    }}
-                  />
-                </StyledInputWrapper>
-                <StyledInputWrapper>
-                  <Form.Label
-                    label="Confirm Password"
-                    margin="0 0 10px 0"
-                    fill="#828282"
-                  />
-                  <Form.Input
-                    control={control}
-                    errors={errors}
-                    name="confirmPassword"
-                    type="password"
-                    placeholder="Enter Password"
-                    size="medium"
-                    rules={{
-                      validate: {
-                        required: validateRequiredField("Password"),
-                      },
-                    }}
-                  />
-                </StyledInputWrapper>
+                <StyledItemWrapper>
+                  <StyledInputWrapper>
+                    <Form.Label
+                      label="First Name"
+                      margin="0 0 10px 0"
+                      fill="#828282"
+                    />
+                    <Form.Input
+                      control={control}
+                      errors={errors}
+                      name="firstName"
+                      type="Input"
+                      placeholder="Enter First Name"
+                      size="medium"
+                      rules={{
+                        validate: {
+                          required: validateRequiredField("First Name"),
+                        },
+                      }}
+                    />
+                  </StyledInputWrapper>
+
+                  <StyledInputWrapper>
+                    <Form.Label
+                      label="Last Name"
+                      margin="0 0 10px 0"
+                      fill="#828282"
+                    />
+                    <Form.Input
+                      control={control}
+                      errors={errors}
+                      name="lastName"
+                      type="Input"
+                      placeholder="Enter Last Name"
+                      size="medium"
+                      rules={{
+                        validate: {
+                          required: validateRequiredField("Last Name"),
+                        },
+                      }}
+                    />
+                  </StyledInputWrapper>
+                </StyledItemWrapper>
+                <StyledItemWrapper>
+                  <StyledInputWrapper>
+                    <Form.Label
+                      label="Select Your User Type"
+                      margin="0 0 10px 0"
+                      fill="#828282"
+                    />
+                    <Form.Select
+                      control={control}
+                      name="occupation"
+                      placeholder="Select occupation"
+                      size="medium"
+                      options={OCCUPATION_STUB}
+                      errors={errors}
+                      fullWidth
+                      rules={{
+                        validate: {
+                          required: validateRequiredField("Occupation"),
+                        },
+                      }}
+                    />
+                  </StyledInputWrapper>
+
+                  <StyledInputWrapper>
+                    <Form.Label
+                      label="Email"
+                      margin="0 0 10px 0"
+                      fill="#828282"
+                    />
+                    <Form.Input
+                      control={control}
+                      errors={errors}
+                      name="email"
+                      type="Input"
+                      placeholder="Enter Email"
+                      size="medium"
+                      rules={{
+                        validate: {
+                          required: validateRequiredField("Email"),
+                        },
+                      }}
+                    />
+                  </StyledInputWrapper>
+                </StyledItemWrapper>
+                <StyledItemWrapper>
+                  <StyledInputWrapper>
+                    <Form.Label
+                      label="Password"
+                      margin="0 0 10px 0"
+                      fill="#828282"
+                    />
+                    <Form.Input
+                      control={control}
+                      errors={errors}
+                      name="password"
+                      type="password"
+                      placeholder="Enter Password"
+                      size="medium"
+                      rules={{
+                        validate: {
+                          required: validateRequiredField("Password"),
+                        },
+                      }}
+                    />
+                  </StyledInputWrapper>
+
+                  <StyledInputWrapper>
+                    <Form.Label
+                      label="Confirm Password"
+                      margin="0 0 10px 0"
+                      fill="#828282"
+                    />
+                    <Form.Input
+                      control={control}
+                      errors={errors}
+                      name="confirmPassword"
+                      type="password"
+                      placeholder="Enter Password"
+                      size="medium"
+                      rules={{
+                        validate: {
+                          required: validateRequiredField("Password"),
+                        },
+                      }}
+                    />
+                  </StyledInputWrapper>
+                </StyledItemWrapper>
               </StyledWrapper>
-              <Button text="Signup"/>
+              <Button text="Signup" />
             </StyledAddUserSectionContainer>
           </Form>
         </StyledFormContainer>
