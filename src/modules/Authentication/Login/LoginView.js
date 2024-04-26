@@ -5,6 +5,8 @@ import Footer from "../../../components/Footer";
 
 import {
   validateRequiredField,
+  isValidEmail,
+  checkMaxLength,
 } from "../../../utils/formValidations";
 
 import {
@@ -29,7 +31,7 @@ const LoginView = ({ onLoginSubmit, control, errors }) => {
               <StyledWrapper>
                 <StyledInputWrapper>
                   <Form.Label
-                    label="Email Address"
+                    label="Email Address *"
                     margin="0 0 10px 0"
                     fill="#828282"
                   />
@@ -43,13 +45,15 @@ const LoginView = ({ onLoginSubmit, control, errors }) => {
                     rules={{
                       validate: {
                         required: validateRequiredField("Email Address"),
+                        isValidEmail,
+                        max: checkMaxLength(250, "Email Address"),
                       },
                     }}
                   />
                 </StyledInputWrapper>
                 <StyledInputWrapper>
                   <Form.Label
-                    label="Password"
+                    label="Password *"
                     margin="0 0 10px 0"
                     fill="#828282"
                   />
@@ -68,7 +72,7 @@ const LoginView = ({ onLoginSubmit, control, errors }) => {
                   />
                 </StyledInputWrapper>
               </StyledWrapper>
-              <Button text="Login"/>
+              <Button text="Login" />
             </StyledAddUserSectionContainer>
           </Form>
         </StyledFormContainer>

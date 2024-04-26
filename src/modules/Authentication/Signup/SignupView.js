@@ -11,7 +11,15 @@ import {
   StyledFormContainer,
   StyledItemWrapper,
 } from "../Authentication.styled";
-import { validateRequiredField } from "../../../utils/formValidations";
+import {
+  hasBlankSpace,
+  isOnlyAlphabets,
+  validateRequiredField,
+  checkMaxLength,
+  isValidEmail,
+  checkMinLength,
+  validateConfirmPassword
+} from "../../../utils/formValidations";
 
 const OCCUPATION_STUB = [
   {
@@ -24,7 +32,8 @@ const OCCUPATION_STUB = [
   },
 ];
 
-const SignupView = ({ onSignupSubmit, control, errors }) => {
+const SignupView = ({ onSignupSubmit, control,watch, errors }) => {
+  const password = watch("password");
   return (
     <div>
       <Header />
@@ -37,7 +46,7 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
                 <StyledItemWrapper>
                   <StyledInputWrapper>
                     <Form.Label
-                      label="First Name"
+                      label="First Name *"
                       margin="0 0 10px 0"
                       fill="#828282"
                     />
@@ -51,6 +60,9 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
                       rules={{
                         validate: {
                           required: validateRequiredField("First Name"),
+                          hasBlankSpace,
+                          isOnlyAlphabets,
+                          max: checkMaxLength(50, "First Name"),
                         },
                       }}
                     />
@@ -58,7 +70,7 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
 
                   <StyledInputWrapper>
                     <Form.Label
-                      label="Last Name"
+                      label="Last Name *"
                       margin="0 0 10px 0"
                       fill="#828282"
                     />
@@ -72,6 +84,9 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
                       rules={{
                         validate: {
                           required: validateRequiredField("Last Name"),
+                          hasBlankSpace,
+                          isOnlyAlphabets,
+                          max: checkMaxLength(50, "Last Name"),
                         },
                       }}
                     />
@@ -80,7 +95,7 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
                 <StyledItemWrapper>
                   <StyledInputWrapper>
                     <Form.Label
-                      label="Select Your User Type"
+                      label="Select Your User Type *"
                       margin="0 0 10px 0"
                       fill="#828282"
                     />
@@ -102,7 +117,7 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
 
                   <StyledInputWrapper>
                     <Form.Label
-                      label="Email"
+                      label="Email Address *"
                       margin="0 0 10px 0"
                       fill="#828282"
                     />
@@ -111,11 +126,13 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
                       errors={errors}
                       name="email"
                       type="Input"
-                      placeholder="Enter Email"
+                      placeholder="Enter Email Address"
                       size="medium"
                       rules={{
                         validate: {
                           required: validateRequiredField("Email"),
+                          isValidEmail,
+                          max: checkMaxLength(250, "Email Address"),
                         },
                       }}
                     />
@@ -124,7 +141,7 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
                 <StyledItemWrapper>
                   <StyledInputWrapper>
                     <Form.Label
-                      label="Password"
+                      label="Password *"
                       margin="0 0 10px 0"
                       fill="#828282"
                     />
@@ -138,6 +155,7 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
                       rules={{
                         validate: {
                           required: validateRequiredField("Password"),
+                          min: checkMinLength(8),
                         },
                       }}
                     />
@@ -145,7 +163,7 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
 
                   <StyledInputWrapper>
                     <Form.Label
-                      label="Confirm Password"
+                      label="Confirm Password *"
                       margin="0 0 10px 0"
                       fill="#828282"
                     />
@@ -154,11 +172,12 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
                       errors={errors}
                       name="confirmPassword"
                       type="password"
-                      placeholder="Enter Password"
+                      placeholder="Enter Confirm Password"
                       size="medium"
                       rules={{
                         validate: {
-                          required: validateRequiredField("Password"),
+                         required: validateRequiredField("Password"),
+                         validateConfirmPassword: validateConfirmPassword (password),
                         },
                       }}
                     />

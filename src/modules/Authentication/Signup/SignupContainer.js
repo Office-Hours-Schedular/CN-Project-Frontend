@@ -6,6 +6,7 @@ const SignupContainer = () => {
   const {
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm();
 
@@ -18,6 +19,7 @@ const SignupContainer = () => {
       onSignupSubmit={handleSubmit(handleSignupSubmit)}
       control={control}
       errors={errors}
+      watch={watch}
     />
   );
 };
