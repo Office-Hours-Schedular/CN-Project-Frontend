@@ -5,12 +5,13 @@ export const StyledDashboardContainer = styled.div`
   gap: 40px;
   flex-direction: column;
   background-color: white;
-  box-shadow: 0px 1px 5px 1px lightgrey;
+  // box-shadow: 0px 1px 5px 1px lightgrey;
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-  min-height: 100vh;
   padding: 20px;
+  /* height: calc(90vh - 72px);
+  overflow-y: scroll;  */
 `;
 
 export const StyleHeading = styled.p`
@@ -19,4 +20,12 @@ export const StyleHeading = styled.p`
   font-weight: bold;
   font-size: 24px;
   font-align: center;
+`;
+
+export const DashboardContent = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
 `;

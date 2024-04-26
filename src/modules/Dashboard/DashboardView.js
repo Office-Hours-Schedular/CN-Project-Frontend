@@ -1,14 +1,38 @@
-import React from "react";
+import {
+  StyledDashboardContainer,
+  StyleHeading,
+  DashboardContent,
+} from "./Dashboard.styled";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Student from "./Student";
+import Professor from "./Professor/Professor";
 
-import { StyledDashboardContainer, StyleHeading } from "./Dashboard.styled";
-const DashboardView = () => {
+const DashboardView = ({ data }) => {
   //add more components, by creating it outside.
-  return (
-    <StyledDashboardContainer>
-      <StyleHeading>Welcome to User Dashboard</StyleHeading>
-      
-    </StyledDashboardContainer>
-  );
+
+  if (data.userType === "student") {
+    return (
+      <div>
+        <Header />
+        <StyledDashboardContainer>
+          <StyleHeading>
+            {data.userType === "student"
+              ? "Welcome to Student Dashboard"
+              : "Welcome to Professor Dashboard"}
+          </StyleHeading>
+          <DashboardContent>
+            {data.userType === "student" ? (
+              <Student data={data} />
+            ) : (
+              <Professor data={data} />
+            )}
+          </DashboardContent>
+        </StyledDashboardContainer>
+        <Footer />
+      </div>
+    );
+  }
 };
 
 export default DashboardView;

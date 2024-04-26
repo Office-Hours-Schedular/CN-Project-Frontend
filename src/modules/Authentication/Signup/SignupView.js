@@ -1,11 +1,10 @@
 import React from "react";
-import Form from "../../../components/form";
+import {Form,Button} from "../../../components";
 import Header from "../../../components/Header/";
 import Footer from "../../../components/Footer";
 import {
   ContainerFluid,
   StyledAddUserSectionContainer,
-  StyledButton,
   StyledInputWrapper,
   StyledTitle,
   StyledWrapper,
@@ -125,9 +124,7 @@ const SignupView = ({ onSignupSubmit, control, errors }) => {
                   />
                 </StyledInputWrapper>
               </StyledWrapper>
-              <StyledButton type="primary" htmlType="submit">
-                Submit
-              </StyledButton>
+              <Button text="Signup"/>
             </StyledAddUserSectionContainer>
           </Form>
         </StyledFormContainer>

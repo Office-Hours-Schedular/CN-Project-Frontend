@@ -6,4 +6,9 @@ export const FooterStyle = styled.div`
   font-size: 14px;
   display: flex;
   justify-content: center;
+  // position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 `;
