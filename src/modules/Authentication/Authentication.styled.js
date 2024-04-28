@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import backgroundImg from "../../assets/images/hepner-hall-zoom.png";
-import { Button } from "antd";
 
 export const ContainerFluid = styled.div`
   padding: 0;
@@ -23,6 +22,7 @@ export const StyledAddUserSectionContainer = styled.div`
   border: 1px solid #e0e0e0;
   background-color: #fff;
 `;
+
 
 export const StyledTitle = styled.div`
   text-align: center;

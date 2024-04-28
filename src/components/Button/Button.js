@@ -1,9 +1,9 @@
 import React from "react";
 import { StyledButton } from "./Button.styled";
 
-const Button = ({text}) => {
+const Button = ({text, ...rest}) => {
     return (
-      <StyledButton type="primary" htmlType="submit">
+      <StyledButton type="primary" htmlType="submit" {...rest} >
         {text}
       </StyledButton>
     );

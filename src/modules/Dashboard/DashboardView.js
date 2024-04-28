@@ -6,12 +6,12 @@ import {
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Student from "./Student";
-import Professor from "./Professor/Professor";
+import Professor from "./Professor";
 
 const DashboardView = ({ data }) => {
   //add more components, by creating it outside.
 
-  if (data.userType === "student") {
+  if (data.userType === "professor") {
     return (
       <div>
         <Header />

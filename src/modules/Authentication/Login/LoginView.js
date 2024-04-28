@@ -18,8 +18,8 @@ import {
   StyledFormContainer,
 } from "../Authentication.styled";
 
-const LoginView = ({ onLoginSubmit, control, errors }) => {
-
+const LoginView = ({ onLoginSubmit,loginData, control, errors }) => {
+  const { loading, data, error } = loginData || {};
   return (
     <div>
       <Header />
@@ -28,6 +28,9 @@ const LoginView = ({ onLoginSubmit, control, errors }) => {
           <Form onSubmit={onLoginSubmit}>
             <StyledAddUserSectionContainer>
               <StyledTitle>Login</StyledTitle>
+              {error && (
+                <Form.FieldError error={data.errorDescription} align="center" />
+              )}
               <StyledWrapper>
                 <StyledInputWrapper>
                   <Form.Label
@@ -72,7 +75,8 @@ const LoginView = ({ onLoginSubmit, control, errors }) => {
                   />
                 </StyledInputWrapper>
               </StyledWrapper>
-              <Button text="Login" />
+
+              <Button text="Login" loading={loading} />
             </StyledAddUserSectionContainer>
           </Form>
         </StyledFormContainer>

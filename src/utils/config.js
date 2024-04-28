@@ -1,1 +1,2 @@
-export const { OFFICE_HOURS_MANAGER_API_URL } = process.env;
+export const {REACT_APP_API_ENDPOINT} = process.env;
+

@@ -5,7 +5,7 @@ import DashboardView from "./DashboardView";
 
 const DashboardContainer = () => {
   const data = {
-    userType: "student",
+    userType: "professor",
     appointmentData: [
       {
         id: 1,

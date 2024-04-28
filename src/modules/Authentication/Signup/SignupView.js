@@ -23,16 +23,18 @@ import {
 
 const OCCUPATION_STUB = [
   {
-    value: "student",
+    value: "STUDENT",
     label: "Student",
   },
   {
-    value: "professor",
+    value: "PROFESSOR",
     label: "Professor",
   },
 ];
 
-const SignupView = ({ onSignupSubmit, control,watch, errors }) => {
+const SignupView = ({ onSignupSubmit, control, watch, errors, signupData }) => {
+  const { loading, data, error } = signupData || {};
+  
   const password = watch("password");
   return (
     <div>
@@ -42,6 +44,9 @@ const SignupView = ({ onSignupSubmit, control,watch, errors }) => {
           <Form onSubmit={onSignupSubmit}>
             <StyledAddUserSectionContainer>
               <StyledTitle>Signup</StyledTitle>
+              {error && (
+                <Form.FieldError error={data.errorDescription} align="center" />
+              )}
               <StyledWrapper>
                 <StyledItemWrapper>
                   <StyledInputWrapper>
@@ -53,7 +58,7 @@ const SignupView = ({ onSignupSubmit, control,watch, errors }) => {
                     <Form.Input
                       control={control}
                       errors={errors}
-                      name="firstName"
+                      name="name"
                       type="Input"
                       placeholder="Enter First Name"
                       size="medium"
@@ -67,7 +72,6 @@ const SignupView = ({ onSignupSubmit, control,watch, errors }) => {
                       }}
                     />
                   </StyledInputWrapper>
-
                   <StyledInputWrapper>
                     <Form.Label
                       label="Last Name *"
@@ -77,7 +81,7 @@ const SignupView = ({ onSignupSubmit, control,watch, errors }) => {
                     <Form.Input
                       control={control}
                       errors={errors}
-                      name="lastName"
+                      name="lastname"
                       type="Input"
                       placeholder="Enter Last Name"
                       size="medium"
@@ -176,15 +180,16 @@ const SignupView = ({ onSignupSubmit, control,watch, errors }) => {
                       size="medium"
                       rules={{
                         validate: {
-                         required: validateRequiredField("Password"),
-                         validateConfirmPassword: validateConfirmPassword (password),
+                          required: validateRequiredField("Password"),
+                          validateConfirmPassword:
+                            validateConfirmPassword(password),
                         },
                       }}
                     />
                   </StyledInputWrapper>
                 </StyledItemWrapper>
               </StyledWrapper>
-              <Button text="Signup" />
+              <Button text="Signup" loading={loading} />
             </StyledAddUserSectionContainer>
           </Form>
         </StyledFormContainer>

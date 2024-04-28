@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledInputWrapper = styled.div`
-width:70%;
+  width:70%;
 `
 
 

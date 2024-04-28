@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import StudentView from './StudentView' 
 import { useForm } from 'react-hook-form';
 import useAPI from "../../../hooks/useAPI";
@@ -19,6 +19,22 @@ const StudentContainer = ({data}) => {
   const [, addStudentScheduleItem] = useAPI("POST_STUDENT_SCHEDULE_ITEM", {
     lazy: true,
   });
+   const [ProfessorListData, getProfessorList] = useAPI("GET_PROFESSOR_LIST", {
+     lazy: true,
+   });
+
+  useEffect(() => {
+    getProfessorList();
+  },[]);
+    
+
+
+const ProfessorList = ProfessorListData?.data?.professors?.map((professor) => ({
+  value: professor?._id,
+  label: `${professor?.name} ${professor?.lastname}`,
+}));
+  
+  // const watchPofessorId = watch("ProfessorName");
   // const [, , { refresh }] = useAPI("GET_SCHEDULED_APPOINTMENT_LIST", { lazy: true });
 
    const handleSlotSelection = (slot) => {
@@ -36,7 +52,7 @@ const StudentContainer = ({data}) => {
     if (timeSlotError) {
       return; // Prevent form submission if there's an error message
     }
-    const isoDate = formData.date.toISOString();
+    // const isoDate = formData.date.toISOString();
     const payload = formData;
     // createUser({
     //   onSuccess: handleCreateUserSuccess,
@@ -47,7 +63,6 @@ const StudentContainer = ({data}) => {
       onSuccess: handleScheduleSuccess,
       payload,
     });
-    console.log(formData, isoDate);
     //api call
   };
  
@@ -63,6 +78,7 @@ const StudentContainer = ({data}) => {
       handleSlotSelection={handleSlotSelection}
       watch={watch}
       data={data}
+      ProfessorList={ProfessorList}
     />
   ); 
 }

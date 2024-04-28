@@ -14,20 +14,6 @@ import {
 } from "./Student.styled";
 import StudentAppointmentHistory from "./StudentAppointmentHistory";
 
-const PROFESSOR_NAME_STUB = [
-  {
-    value: "jack",
-    label: "Jack",
-  },
-  {
-    value: "lucy",
-    label: "Lucy",
-  },
-  {
-    value: "tom",
-    label: "Tom",
-  },
-];
 
 const DEPARTMENT_STUB = [
   {
@@ -45,8 +31,6 @@ const DEPARTMENT_STUB = [
 ];
 
 
-
-
 const availableTimeSlots_stub = ["9:00 AM", "10:00 AM", "11:00 AM"];
 
 const StudentView = ({
@@ -60,6 +44,7 @@ const StudentView = ({
   timeSlotError,
   watch,
   data,
+  ProfessorList
 }) => {
   const watchShowAge = watch("date");
 
@@ -80,7 +65,7 @@ const StudentView = ({
               name="ProfessorName"
               placeholder="Select language"
               size="large"
-              options={PROFESSOR_NAME_STUB}
+              options={ProfessorList}
               errors={errors}
               rules={{
                 validate: { required: validateRequiredField("Professor Name") },

@@ -2,10 +2,24 @@ import { useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import apiService from "../utils/apiService";
 import { schema } from "../redux/schema";
-import { getValue } from "../utils/commonUtils";
 
-const useAPI = (type, options = {}) => {
+const dispatchAction =
+  (dispatch) =>
+  ({ type, data, readProps, mergeData, onSuccess, onFailure }) => {
+    dispatch({ type, data, readProps, mergeData });
+
+    if (onSuccess) {
+      onSuccess(data);
+    }
+
+    if (onFailure) {
+      onFailure(data);
+    }
+  };
+
+const useAPI = (type, options) => {
   let apiSchema = schema[type];
+
   if (typeof apiSchema === "function") {
     apiSchema = apiSchema({});
   }
@@ -13,7 +27,7 @@ const useAPI = (type, options = {}) => {
   const dispatch = useDispatch();
 
   const readProps = useSelector(
-    (state) => state["applicationReducer"][apiSchema.props],
+    (state) => state.applicationReducer[apiSchema.props],
     shallowEqual
   );
 
@@ -23,10 +37,13 @@ const useAPI = (type, options = {}) => {
 
   const readAPISchema = (dataOptions) => {
     const optionConfig = readConfig(dataOptions);
+
     let apiSchemaFunction = schema[type];
+
     if (typeof apiSchemaFunction === "function") {
       apiSchemaFunction = apiSchemaFunction(optionConfig);
     }
+
     return apiSchemaFunction;
   };
 
@@ -34,25 +51,38 @@ const useAPI = (type, options = {}) => {
     const parsedSchema = readAPISchema(dataOptions);
     const optionConfig = readConfig(dataOptions);
 
-    if (optionConfig.updateResult || optionConfig.refresh) {
-      dispatch({
-        type: type + "_PENDING",
-        data: getValue(readProps, "readProps.data"),
+    if (optionConfig.clear) {
+      dispatchAction(dispatch)({
+        type: `${type}_CLEAR`,
+        data: null,
         readProps: parsedSchema.props,
       });
-    } else {
-      dispatch({
-        type: type + "_PENDING",
-        data: optionConfig.initialData,
-        readProps: parsedSchema.props,
-      });
+
+      return;
     }
 
-    //API call
+    if (!optionConfig.silent) {
+      if (optionConfig.updateResult || optionConfig.refresh) {
+        dispatchAction(dispatch)({
+          type: `${type}_PENDING`,
+          data: readProps?.data,
+          readProps: parsedSchema.props,
+        });
+      } else {
+        dispatchAction(dispatch)({
+          type: `${type}_PENDING`,
+          data: optionConfig.initialData,
+          readProps: parsedSchema.props,
+        });
+      }
+    }
+
     apiService({
       url: parsedSchema.url,
       method: parsedSchema.method,
       data: optionConfig.payload,
+      headers: parsedSchema.headers,
+      params: parsedSchema.params,
     })
       .then((response) => {
         if (optionConfig.updateResult) {
@@ -60,25 +90,33 @@ const useAPI = (type, options = {}) => {
             readProps,
             response.data
           );
-          dispatch({
-            type: type + "_SUCCESS",
+
+          dispatchAction(dispatch)({
+            type: `${type}_SUCCESS`,
             data: updatedResult,
             readProps: parsedSchema.props,
+            onSuccess: optionConfig.onSuccess,
+            mergeData: optionConfig.mergeData,
           });
         } else {
-          dispatch({
-            type: type + "_SUCCESS",
-            data: getValue(response, "response.data.data"),
+          dispatchAction(dispatch)({
+            type: `${type}_SUCCESS`,
+            data: response?.data,
             readProps: parsedSchema.props,
+            onSuccess: optionConfig.onSuccess,
+            mergeData: optionConfig.mergeData,
           });
-
-          optionConfig.onSuccess && optionConfig.onSuccess();
         }
       })
       .catch((error) => {
-        dispatch({
-          type: type + "_FAILURE",
+        dispatchAction(dispatch)({
+          type: `${type}_FAILURE`,
+          data: {
+            errorStatus: "error",
+            errorDescription: error?.response?.data?.error,
+          },
           readProps: parsedSchema.props,
+          onFailure: optionConfig.onFailure,
         });
       });
   };
@@ -91,13 +129,17 @@ const useAPI = (type, options = {}) => {
     requestData({ ...refreshOptions, refresh: true });
   };
 
+  const clear = (clearOptions) => {
+    requestData({ ...clearOptions, clear: true });
+  };
+
   useEffect(() => {
     if (!options.lazy) {
       requestData(options);
     }
   }, []);
 
-  return [readProps, requestData, { fetchNext, refresh }];
+  return [readProps, requestData, { fetchNext, refresh, clear }];
 };
 
 export default useAPI;

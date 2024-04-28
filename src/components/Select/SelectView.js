@@ -23,14 +23,12 @@ const Select = ({ options, color, ...rest }) => {
 
 Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object),
-  iconColor: PropTypes.string,
   color: PropTypes.string,
   showSearch: PropTypes.bool,
 };
 
 Select.defaultProps = {
   options: [],
-  iconColor: "",
   color: "primary",
   showSearch:false, 
 };

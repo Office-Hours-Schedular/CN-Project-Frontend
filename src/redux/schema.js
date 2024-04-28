@@ -1,6 +1,17 @@
-import {
-  OFFICE_HOURS_MANAGER_API_URL,
-} from "../utils/config.js";
+// import { REACT_APP_API_ENDPOINT } from "../utils/config.js";
+
+
+
+const authHeader = () => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    return { Authorization: token };
+  }
+
+  return null;
+};
+
 
 export const schema = {
   // FETCH_HOME_DATA: ({ isSuccess }) => {
@@ -14,47 +25,77 @@ export const schema = {
   //   };
   // },
 
-  POST_STUDENT_SCHEDULE_ITEM: (payload) => {
-    const url = `${OFFICE_HOURS_MANAGER_API_URL}/api/student/schedule/${payload.id}`;
+  SIGNUP_USER: () => {
+    const url = `http://localhost:3001/api/public/register`;
+
     return {
-      props: "addStudentScheduleItem",
+      props: "signup",
       url,
       method: "POST",
     };
   },
 
-  GET_USERS_LIST: () => {
-    const url = `https://blue-journalist-bbrpv.ineuron.app:4000/users`;
+  LOGIN_USER: () => {
+    const url = `http://localhost:3001/api/public/login`;
 
     return {
-      props: "userList",
+      props: "login",
+      url,
+      method: "POST",
+    };
+  },
+
+  GET_PROFESSOR_LIST: () => {
+    const url = `http://localhost:3001/api/professors`;
+
+    return {
+      props: "professorList",
       url,
       method: "GET",
+      headers: authHeader(),
     };
   },
-  CREATE_USER: () => {
-    const url = `https://blue-journalist-bbrpv.ineuron.app:4000/user/create`;
+
+  GET_PROFESSOR_SCHEDULE: (payload) => {
+     const url = `http://localhost:3001/api/schedule/${payload.user_id}`;
+
     return {
-      props: "newUser",
+      props: "scheduledList",
+      url,
+      method: "GET",
+      headers: authHeader(),
+    };
+  },
+
+  GET_STUDENT_SCHEDULE_LIST: (payload) => {
+    const url = `http://localhost:3001/api/student/schedule/${payload.user_id}`;
+
+    return {
+      props: "scheduledList",
+      url,
+      method: "GET",
+      headers: authHeader(),
+    };
+  },
+
+  POST_PROFESSOR_SCHEDULE_ITEM: (payload) => {
+
+    const url = `http://localhost:3001/api/professor/schedule/${payload.user_id}`;
+    return {
+      props: "ProfessorScheduleItem",
       url,
       method: "POST",
+      headers: authHeader(),
     };
   },
-  DELETE_USER: (payload) => {
-    const url = `https://blue-journalist-bbrpv.ineuron.app:4000/user/${payload.id}`;
-    return {
-      props: "deleteUser",
-      url,
-      method: "DELETE",
-    };
-  },
-  UPDATE_USER: (payload) => {
-    const url = `https://blue-journalist-bbrpv.ineuron.app:4000/user/${payload.id}`;
-    return {
-      props: "updateUser",
-      url,
-      method: "PATCH",
-      headers: payload.id,
-    };
-  },
+
+  // POST_STUDENT_SCHEDULE_ITEM: (payload) => {
+  //   const url = `${REACT_APP_API_ENDPOINT}/api/student/schedule/${payload.id}`;
+  //   return {
+  //     props: "addStudentScheduleItem",
+  //     url,
+  //     method: "POST",
+  //   };
+  // },
+  
 };
