@@ -82,7 +82,7 @@ export const schema = {
     const url = `http://localhost:3001/api/student/schedule/${payload.user_id}`;
 
     return {
-      props: "scheduledList",
+      props: "studentScheduledList",
       url,
       method: "GET",
       headers: authHeader(),

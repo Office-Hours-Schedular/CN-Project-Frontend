@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledInputWrapper = styled.div`
-  width:60%;
+  width:100%;
 `
 
 
@@ -118,20 +118,18 @@ export const SelectView = styled.div`
 `;
 
 export const StudentDashboardWrapper = styled.div`
-width:100%;
+ width:100%;
   display: flex;
   justify-content: space-between;
 `;
 
 export const AppointmentContent = styled.div`
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start; */
-  /* gap: 50px;
-  background-color: #f2f2f2; */
-  padding: 20px 0px;
-  border-bottom: solid 0.7px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #f2f2f2; 
+  padding: 20px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const StyledItemWrapper = styled.p`
@@ -149,5 +147,8 @@ export const StyledHeading = styled.p`
 `;
 
 export const StyledWrapper = styled.div`
-  width: 60%;
+display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 30%;
 `;

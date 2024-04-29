@@ -15,17 +15,12 @@ const LoginContainer = () => {
     lazy: true,
   });
 
-   const [, getUserProfile] = useAPI("GET_USER_DETAILS", {
-     lazy: true,
-   });
-
   const history = useHistory();
 
   const handleLoginClick = ({ res }) => {
     localStorage.setItem("token", res.jwt);
     localStorage.setItem("userId", res.userId);
-    const user_id = res?.userId
-    getUserProfile({ onSuccess: () => history.push("/dashboard"), user_id });
+   history.push("/dashboard");
   };
 
   const handleLoginSubmit = (formData) => {

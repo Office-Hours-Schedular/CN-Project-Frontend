@@ -2,22 +2,23 @@ import React, { useEffect, useState } from "react";
 import StudentView from "./StudentView";
 import { useForm } from "react-hook-form";
 import useAPI from "../../../hooks/useAPI";
-import { helper } from "./helper";
+import { message } from "antd";
 
 const StudentContainer = ({ data }) => {
   const {
     handleSubmit,
     control,
-    register,
     formState: { errors },
     watch,
     reset,
   } = useForm();
+
   const user_id = localStorage.getItem("userId");
   const [selectedTimeSlot, setSelectedTimeSlot] = useState({});
   const [timeSlotError, setTimeSlotError] = useState("");
-
-  const [, addStudentScheduleItem] = useAPI("POST_STUDENT_SCHEDULE_ITEM", {
+  const [messageApi, contextHolder] = message.useMessage();
+  
+  const [studentData, addStudentScheduleItem] = useAPI("POST_STUDENT_SCHEDULE_ITEM", {
     lazy: true,
   });
 
@@ -45,24 +46,16 @@ const StudentContainer = ({ data }) => {
   );
 
   const watchProfessorId = watch("ProfessorName");
-
  
   useEffect(() => {
     watchProfessorId && getProfessorSchedule({ user_id: watchProfessorId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watchProfessorId]);
+  }, [watchProfessorId, studentData]);
 
   const professorItems = ProfessorSchedule?.data?.professorItems;
-  // const studentItems = ProfessorSchedule?.data?.studentItems;
+  const studentItems = ProfessorSchedule?.data?.studentItems;
 
   const watchDate = watch("date");
-  console.log(professorItems, watchDate?.toISOString(), "watchDate");
-  // const [, , { refresh }] = useAPI("GET_SCHEDULED_APPOINTMENT_LIST", { lazy: true });
-
-  const availableSlots = watchDate && helper(
-    professorItems,
-    watchDate?.toISOString()
-  );
 
   const handleSlotSelection = (slot) => {
     setSelectedTimeSlot(slot);
@@ -70,8 +63,10 @@ const StudentContainer = ({ data }) => {
   };
 
   const handleScheduleSuccess = () => {
-    //add alert
-    // refresh();
+     messageApi.open({
+       type: "success",
+       content: "Time slot released successfully",
+     });
     reset();
   };
 
@@ -79,22 +74,12 @@ const StudentContainer = ({ data }) => {
     if (formData && selectedTimeSlot) {
       const newIsoDateTime = `${formData?.date?.toISOString().split("T")[0]
         }T${selectedTimeSlot.startTime}:00.000Z`;
-
-      console.log("hii")
-      // if (timeSlotError) {
-      //   return; // Prevent form submission if there's an error message
-      // }
-
-      // const isoDate = formData.date.toISOString();
+      
       const payload = {
         startTime: newIsoDateTime,
         professorItemId: selectedTimeSlot?.itemId,
         description: formData?.description,
       };
-      // createUser({
-      //   onSuccess: handleCreateUserSuccess,
-      //   payload,
-      // });
 
       addStudentScheduleItem({
         onSuccess: handleScheduleSuccess,
@@ -105,21 +90,20 @@ const StudentContainer = ({ data }) => {
   }
     return (
       <StudentView
+        contextHolder={contextHolder}
         onScheduleSubmit={handleSubmit(handleScheduleSubmit)}
         control={control}
         errors={errors}
-        register={register}
         selectedTimeSlot={selectedTimeSlot}
-        setSelectedTimeSlot={setSelectedTimeSlot}
         timeSlotError={timeSlotError}
         handleSlotSelection={handleSlotSelection}
-        watch={watch}
-        data={data}
         ProfessorList={ProfessorList}
-        availableSlots={availableSlots}
         watchDate={watchDate}
         professorItems={professorItems}
         watchProfessorId={watchProfessorId}
+        studentItems={studentItems}
+        studentData={studentData}
+        ProfessorListData={ProfessorListData}
       />
     );
   };

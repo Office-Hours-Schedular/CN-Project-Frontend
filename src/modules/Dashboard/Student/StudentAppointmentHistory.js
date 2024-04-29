@@ -8,9 +8,10 @@ import {
 } from "./Student.styled";
 import useAPI from "../../../hooks/useAPI";
 
-const StudentAppointmentHistory = ({ professorItems }) => {
+const StudentAppointmentHistory = ({ studentData, ProfessorListData }) => {
   const user_id = localStorage.getItem("userId");
-  const [scheduledListData, scheduledList] = useAPI(
+
+  const [scheduledListData, studentScheduledList] = useAPI(
     "GET_STUDENT_SCHEDULE_LIST",
     {
       lazy: true,
@@ -18,18 +19,21 @@ const StudentAppointmentHistory = ({ professorItems }) => {
   );
 
   useEffect(() => {
-    scheduledList({ user_id });
+    studentScheduledList({ user_id });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  }, [studentData]);
 
   const appointmentData = scheduledListData?.data?.studentItems;
-  console.log(appointmentData);
-  
+ 
   return (
     <StyledWrapper>
       <StyledHeading>Upcoming Appointments</StyledHeading>
       {appointmentData?.map((appointment) => {
+
+        const professor = ProfessorListData?.data?.professors?.find(
+          (professor) => professor._id === appointment?.professor_id
+        );
+
         const [datePart, timePart] = appointment.startTime.split("T");
 
         // Extract date components
@@ -57,9 +61,8 @@ const StudentAppointmentHistory = ({ professorItems }) => {
 
         return (
           <AppointmentContent key={appointment.id}>
-            {/* <p>{appointment.description}</p> */}
             <StyledItemWrapper>
-              Date:
+              Date:{" "}
               <StyledDescription>
                 {day} {monthName} {year}
               </StyledDescription>
@@ -68,7 +71,10 @@ const StudentAppointmentHistory = ({ professorItems }) => {
               Time: <StyledDescription>{time}:00</StyledDescription>
             </StyledItemWrapper>
             <StyledItemWrapper>
-              Professor: <StyledDescription>John</StyledDescription>
+              Professor:{" "}
+              <StyledDescription>
+                {professor?.name} {professor?.lastname}
+              </StyledDescription>
             </StyledItemWrapper>
             <StyledItemWrapper>
               Description:{" "}
