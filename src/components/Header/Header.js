@@ -2,6 +2,7 @@ import React from "react";
 import { HeaderStyle } from "./Header.styled";
 
 import AppLogo from "../../assets/images/logo.png";
+import SdsuLogo from "../../assets/images/sdsu-logo.png";
 
 const Header = () => {
   return (
@@ -9,10 +10,10 @@ const Header = () => {
       <HeaderStyle>
         <a href="https://www.sdsu.edu/">
           <img
-            src="https://ou-resources.sdsu.edu/images/_sdsu/logo-2022/logo.png"
+            src={SdsuLogo}
             alt="San Diego State University"
             height="40"
-            width="176"
+            width="240"
           />
         </a>
 
