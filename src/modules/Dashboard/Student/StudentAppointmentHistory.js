@@ -36,7 +36,8 @@ const StudentAppointmentHistory = ({ professorItems }) => {
         const [year, month, day] = datePart.split("-");
 
         // Extract time components
-        const [time, timezone] = timePart.split("Z")[0].split(":");
+        // eslint-disable-next-line
+        const [time, studentItems] = timePart.split("Z")[0].split(":");
 
         const monthNames = [
           "January",

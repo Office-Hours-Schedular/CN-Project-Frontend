@@ -53,7 +53,7 @@ const StudentContainer = ({ data }) => {
   }, [watchProfessorId]);
 
   const professorItems = ProfessorSchedule?.data?.professorItems;
-  const studentItems = ProfessorSchedule?.data?.studentItems;
+  // const studentItems = ProfessorSchedule?.data?.studentItems;
 
   const watchDate = watch("date");
   console.log(professorItems, watchDate?.toISOString(), "watchDate");

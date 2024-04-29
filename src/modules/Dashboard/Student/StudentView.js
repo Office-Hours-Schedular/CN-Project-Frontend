@@ -14,24 +14,6 @@ import {
 } from "./Student.styled";
 import StudentAppointmentHistory from "./StudentAppointmentHistory";
 
-
-const DEPARTMENT_STUB = [
-  {
-    value: "Sales",
-    label: "Sales",
-  },
-  {
-    value: "Marketing",
-    label: "Marketing",
-  },
-  {
-    value: "Engineering",
-    label: "Engineering",
-  },
-];
-
-
-
 const StudentView = ({
   professorItems,
   onScheduleSubmit,
