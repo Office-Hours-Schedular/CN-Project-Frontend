@@ -4,35 +4,38 @@ import {
   DashboardContent,
 } from "./Dashboard.styled";
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import Student from "./Student";
 import Professor from "./Professor";
+import { shallowEqual, useSelector } from "react-redux";
 
-const DashboardView = ({ data }) => {
-  //add more components, by creating it outside.
+const DashboardView = () => {
 
-  if (data.userType === "professor") {
+const user = useSelector(
+  (state) => state.applicationReducer?.userDetails,
+  shallowEqual
+);
+
+const userData = user?.data;
+
     return (
       <div>
         <Header />
         <StyledDashboardContainer>
           <StyleHeading>
-            {data.userType === "student"
-              ? "Welcome to Student Dashboard"
-              : "Welcome to Professor Dashboard"}
+            {userData?.occupation === "STUDENT"
+              ? `Welcome to Dashboard ${userData?.name}`
+              : `Welcome to Dashboard Professor, ${userData?.name}`}
           </StyleHeading>
           <DashboardContent>
-            {data.userType === "student" ? (
-              <Student data={data} />
+            {userData?.occupation === "STUDENT" ? (
+              <Student data={userData} />
             ) : (
-              <Professor data={data} />
+              <Professor data={userData} />
             )}
           </DashboardContent>
         </StyledDashboardContainer>
-        <Footer />
       </div>
     );
-  }
 };
 
 export default DashboardView;

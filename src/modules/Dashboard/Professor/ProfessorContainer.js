@@ -5,6 +5,7 @@ import useAPI from "../../../hooks/useAPI";
 import { helper } from "./helper";
 
 const StudentContainer = ({ data }) => {
+
   const {
     handleSubmit,
     control,
@@ -108,6 +109,7 @@ const StudentContainer = ({ data }) => {
       studentItems={studentItems}
       showDate={showDate}
       availableSlots={availableSlots}
+      professorItems={professorItems}
     />
   );
 };

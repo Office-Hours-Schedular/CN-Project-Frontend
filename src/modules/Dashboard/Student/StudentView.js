@@ -31,9 +31,9 @@ const DEPARTMENT_STUB = [
 ];
 
 
-const availableTimeSlots_stub = ["9:00 AM", "10:00 AM", "11:00 AM"];
 
 const StudentView = ({
+  professorItems,
   onScheduleSubmit,
   control,
   register,
@@ -44,10 +44,11 @@ const StudentView = ({
   timeSlotError,
   watch,
   data,
-  ProfessorList
+  ProfessorList,
+  watchDate,
+  availableSlots,
+  watchProfessorId,
 }) => {
-  const watchShowAge = watch("date");
-
   return (
     <StudentDashboardWrapper>
       <Form onSubmit={onScheduleSubmit}>
@@ -63,32 +64,12 @@ const StudentView = ({
               optionFilterProp="children"
               control={control}
               name="ProfessorName"
-              placeholder="Select language"
-              size="large"
+              placeholder="Select Professor Name"
+              size="medium"
               options={ProfessorList}
               errors={errors}
               rules={{
                 validate: { required: validateRequiredField("Professor Name") },
-              }}
-            />
-          </StyledInputWrapper>
-          <StyledInputWrapper>
-            <Form.Label
-              label="Select Your Department"
-              margin="0 0 10px 0"
-              bold
-            />
-            <Form.Select
-              showSearch
-              optionFilterProp="children"
-              control={control}
-              name="Department"
-              placeholder="Select Department"
-              size="large"
-              options={DEPARTMENT_STUB}
-              errors={errors}
-              rules={{
-                validate: { required: validateRequiredField("Department") },
               }}
             />
           </StyledInputWrapper>
@@ -109,7 +90,7 @@ const StudentView = ({
             }}
           />
         </StyledInputWrapper>
-        <StyledInputWrapper>
+       {watchProfessorId && <StyledInputWrapper>
           <DatePickerContainer>
             <Form.Label label="Select a Date" margin="0 0 10px 0" bold />
             <StyledDate>
@@ -122,30 +103,31 @@ const StudentView = ({
             </StyledDate>
             {errors.date && <ErrorMessage>Date is required</ErrorMessage>}
           </DatePickerContainer>
-        </StyledInputWrapper>
-        <StyledInputWrapper>
+        </StyledInputWrapper>}
+        {watchDate && <StyledInputWrapper>
           <Form.Label
             label="Select your preferred time slot"
             margin="0 0 10px 0"
             bold
           />
           <StyledDate>
-            {availableTimeSlots_stub.map((slot, index) => (
+            {availableSlots?.map((slot, index) => (
               <TimeSlotButton
                 key={index}
-                selected={selectedTimeSlot === slot}
+                selected={selectedTimeSlot.startTime === slot?.startTime}
                 onClick={() => handleSlotSelection(slot)}
-                disabled={watchShowAge ? false : true}
+                disabled={watchDate ? false : true}
+                type="button"
               >
-                {slot}
+                {slot?.startTime}
               </TimeSlotButton>
             ))}
           </StyledDate>
           {timeSlotError && <ErrorMessage>{timeSlotError}</ErrorMessage>}
-        </StyledInputWrapper>
-        <Button text="Schedule Appointment" />
+        </StyledInputWrapper>}
+        <Button text="Schedule Appointment" size="large" />
       </Form>
-      <StudentAppointmentHistory data={data} />
+      <StudentAppointmentHistory data={data} professorItems={professorItems} />
     </StudentDashboardWrapper>
   );
 };

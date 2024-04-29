@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledInputWrapper = styled.div`
-  width:70%;
+  width:60%;
 `
 
 
@@ -124,14 +124,30 @@ width:100%;
 `;
 
 export const AppointmentContent = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 50px;
-  background-color: #f2f2f2;
-  padding: 20px 30px;
+  align-items: flex-start; */
+  /* gap: 50px;
+  background-color: #f2f2f2; */
+  padding: 20px 0px;
   border-bottom: solid 0.7px;
 `;
 
+export const StyledItemWrapper = styled.p`
+  font-weight: bold;
+`;
 
+export const StyledDescription = styled.span`
+  font-weight: normal;
+`;
+
+export const StyledHeading = styled.p`
+  font-weight: bold;
+  font-size: 16px;
+  /* color: #f2f2f2; */
+`;
+
+export const StyledWrapper = styled.div`
+  width: 60%;
+`;

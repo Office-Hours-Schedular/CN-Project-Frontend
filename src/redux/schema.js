@@ -45,6 +45,17 @@ export const schema = {
     };
   },
 
+  GET_USER_DETAILS: (payload) => {
+    const url = `http://localhost:3001/api/${payload.user_id}`;
+
+    return {
+      props: "userDetails",
+      url,
+      method: "GET",
+      headers: authHeader(),
+    };
+  },
+
   GET_PROFESSOR_LIST: () => {
     const url = `http://localhost:3001/api/professors`;
 
@@ -89,13 +100,14 @@ export const schema = {
     };
   },
 
-  // POST_STUDENT_SCHEDULE_ITEM: (payload) => {
-  //   const url = `${REACT_APP_API_ENDPOINT}/api/student/schedule/${payload.id}`;
-  //   return {
-  //     props: "addStudentScheduleItem",
-  //     url,
-  //     method: "POST",
-  //   };
-  // },
+  POST_STUDENT_SCHEDULE_ITEM: (payload) => {
+    const url = `http://localhost:3001/api/student/schedule/${payload.user_id}`;
+    return {
+      props: "addStudentScheduleItem",
+      url,
+      method: "POST",
+      headers: authHeader(),
+    };
+  },
   
 };

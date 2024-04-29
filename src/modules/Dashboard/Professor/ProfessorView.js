@@ -22,6 +22,7 @@ const allTimeSlots = Array.from(
 );
 
 const ProfessorView = ({
+  professorItems,
   onScheduleSubmit,
   control,
   register,
